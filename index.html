@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ApartHub – Tìm Căn Hộ Lý Tưởng</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="#" class="logo">
+        <span class="logo__icon">🏠</span>
+        <span class="logo__text">Apart<strong>Hub</strong></span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav" id="nav">
+        <a href="#listings" class="nav__link">Căn Hộ</a>
+        <a href="#about"    class="nav__link">Về Chúng Tôi</a>
+        <a href="#contact"  class="nav__link">Liên Hệ</a>
+        <a href="#listings" class="btn btn--sm">Đăng Tin</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero">
+    <div class="hero__overlay"></div>
+    <div class="hero__content">
+      <p class="hero__eyebrow">🔑 Hơn 200+ căn hộ sẵn sàng</p>
+      <h1 class="hero__title">Tìm Căn Hộ<br /><span class="highlight">Lý Tưởng</span> Của Bạn</h1>
+      <p class="hero__subtitle">Khám phá hàng trăm căn hộ chất lượng cao tại TP. Hồ Chí Minh<br />với giá tốt nhất, pháp lý rõ ràng.</p>
+
+      <!-- FILTER BAR -->
+      <div class="filter-bar" id="filterBar">
+        <div class="filter-group">
+          <label class="filter-label">Khu vực</label>
+          <select class="filter-select" id="filterDistrict">
+            <option value="">Tất cả quận</option>
+            <option value="Quận 1">Quận 1</option>
+            <option value="Quận 2">Quận 2 (Thủ Đức)</option>
+            <option value="Quận 3">Quận 3</option>
+            <option value="Bình Thạnh">Bình Thạnh</option>
+            <option value="Gò Vấp">Gò Vấp</option>
+            <option value="Tân Bình">Tân Bình</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label class="filter-label">Khoảng giá</label>
+          <select class="filter-select" id="filterPrice">
+            <option value="">Tất cả mức giá</option>
+            <option value="0-5">Dưới 5 triệu</option>
+            <option value="5-10">5 – 10 triệu</option>
+            <option value="10-20">10 – 20 triệu</option>
+            <option value="20+">Trên 20 triệu</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label class="filter-label">Phòng ngủ</label>
+          <select class="filter-select" id="filterRoom">
+            <option value="">Tất cả loại</option>
+            <option value="Studio">Studio</option>
+            <option value="1PN">1 Phòng ngủ</option>
+            <option value="2PN">2 Phòng ngủ</option>
+            <option value="3PN">3 Phòng ngủ</option>
+          </select>
+        </div>
+
+        <button class="btn filter-btn" id="applyFilter">
+          🔍 Tìm Kiếm
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== STATS ========== -->
+  <section class="stats">
+    <div class="container stats__grid">
+      <div class="stat-item">
+        <span class="stat-num">200+</span>
+        <span class="stat-label">Căn hộ</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">50+</span>
+        <span class="stat-label">Quận / Khu vực</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">1.200+</span>
+        <span class="stat-label">Khách hàng hài lòng</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">5★</span>
+        <span class="stat-label">Đánh giá trung bình</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== LISTINGS ========== -->
+  <section class="listings" id="listings">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Căn Hộ Nổi Bật</h2>
+        <p class="section-sub">Được cập nhật trực tiếp từ trang Facebook của chúng tôi</p>
+      </div>
+
+      <div class="result-count" id="resultCount"></div>
+
+      <div class="grid" id="listingGrid">
+        <!-- Cards rendered by JS -->
+      </div>
+
+      <div class="empty-state hidden" id="emptyState">
+        <div class="empty-icon">🏚️</div>
+        <h3>Không tìm thấy căn hộ</h3>
+        <p>Thử thay đổi bộ lọc để xem thêm kết quả nhé!</p>
+        <button class="btn" id="resetFilter">Xoá bộ lọc</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ABOUT ========== -->
+  <section class="about" id="about">
+    <div class="container about__inner">
+      <div class="about__text">
+        <span class="badge">Về Chúng Tôi</span>
+        <h2>Nền tảng tìm kiếm<br /><span class="highlight">tin cậy nhất</span> thành phố</h2>
+        <p>ApartHub là kênh đăng tải căn hộ cho thuê uy tín tại TP.HCM. Mỗi căn hộ được kiểm duyệt kỹ lưỡng, thông tin minh bạch, hỗ trợ khách thuê 24/7.</p>
+        <ul class="about__list">
+          <li>✅ Pháp lý rõ ràng, không phát sinh phí</li>
+          <li>✅ Ảnh thực tế, không dùng ảnh chỉnh sửa</li>
+          <li>✅ Kết nối trực tiếp chủ nhà – không qua cò</li>
+          <li>✅ Hỗ trợ xem nhà & ký hợp đồng online</li>
+        </ul>
+      </div>
+      <div class="about__image">
+        <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80" alt="Căn hộ hiện đại" loading="lazy" />
+        <div class="about__badge-float">
+          <span class="badge-float-icon">🏆</span>
+          <div>
+            <strong>Top 1</strong>
+            <small>Uy tín TPHCM 2024</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTACT ========== -->
+  <section class="contact" id="contact">
+    <div class="container contact__inner">
+      <h2 class="contact__title">Bạn cần tư vấn?</h2>
+      <p class="contact__sub">Đội ngũ của chúng tôi sẵn sàng hỗ trợ bạn 24/7</p>
+      <div class="contact__btns">
+        <a href="https://m.me/aparthub" class="btn btn--messenger" target="_blank">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 4.975 0 11.111c0 3.497 1.745 6.616 4.472 8.652V24l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.975 12-11.111C24 4.975 18.627 0 12 0zm1.193 14.963l-3.056-3.259-5.963 3.259 6.559-6.963 3.13 3.259 5.889-3.259-6.559 6.963z"/></svg>
+          Nhắn Messenger
+        </a>
+        <a href="tel:0901234567" class="btn btn--zalo" target="_blank">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+          Gọi / Zalo: 090 123 4567
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <span class="logo__icon">🏠</span>
+        <span class="logo__text">Apart<strong>Hub</strong></span>
+        <p>Nền tảng tìm kiếm căn hộ<br />uy tín tại TP. Hồ Chí Minh.</p>
+      </div>
+      <div class="footer__links">
+        <h4>Khám phá</h4>
+        <a href="#">Căn hộ nổi bật</a>
+        <a href="#">Khu vực hot</a>
+        <a href="#">Mới đăng hôm nay</a>
+      </div>
+      <div class="footer__links">
+        <h4>Hỗ trợ</h4>
+        <a href="#">Hướng dẫn thuê nhà</a>
+        <a href="#">Chính sách bảo mật</a>
+        <a href="#">Điều khoản sử dụng</a>
+      </div>
+      <div class="footer__links">
+        <h4>Liên hệ</h4>
+        <a href="tel:0901234567">📞 090 123 4567</a>
+        <a href="mailto:hello@aparthub.vn">✉️ hello@aparthub.vn</a>
+        <a href="#">📍 TP. Hồ Chí Minh</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>© 2024 ApartHub. All rights reserved. Thiết kế bởi <strong>ApartHub Team</strong>.</p>
+    </div>
+  </footer>
+
+  <!-- ========== MODAL ========== -->
+  <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal" id="modal">
+      <button class="modal__close" id="modalClose" aria-label="Đóng">✕</button>
+
+      <div class="modal__gallery">
+        <img class="modal__img" id="modalImg" src="" alt="" loading="lazy" />
+        <span class="modal__badge" id="modalBadge"></span>
+      </div>
+
+      <div class="modal__body">
+        <div class="modal__price-row">
+          <span class="modal__price" id="modalPrice"></span>
+          <span class="modal__tag" id="modalTag"></span>
+        </div>
+        <h2 class="modal__title" id="modalTitle"></h2>
+        <p class="modal__address" id="modalAddress">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          <span id="modalAddressText"></span>
+        </p>
+
+        <div class="modal__specs" id="modalSpecs"></div>
+
+        <div class="modal__divider"></div>
+
+        <h3 class="modal__section-title">📋 Mô tả từ chủ nhà</h3>
+        <div class="modal__description" id="modalDescription"></div>
+
+        <div class="modal__divider"></div>
+
+        <h3 class="modal__section-title">✨ Tiện ích</h3>
+        <div class="modal__amenities" id="modalAmenities"></div>
+
+        <div class="modal__cta">
+          <a class="btn btn--messenger btn--full" id="modalMessenger" href="#" target="_blank">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 4.975 0 11.111c0 3.497 1.745 6.616 4.472 8.652V24l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.975 12-11.111C24 4.975 18.627 0 12 0zm1.193 14.963l-3.056-3.259-5.963 3.259 6.559-6.963 3.13 3.259 5.889-3.259-6.559 6.963z"/></svg>
+            Nhắn tin Messenger
+          </a>
+          <a class="btn btn--zalo btn--full" id="modalZalo" href="#" target="_blank">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+            Gọi / Zalo Chủ Nhà
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== FLOATING BUTTONS ========== -->
+  <div class="float-group" id="floatGroup">
+    <div class="float-tooltip">Zalo</div>
+    <a href="https://zalo.me/0901234567" class="float-btn float-btn--zalo" target="_blank" aria-label="Zalo">
+      <svg width="26" height="26" viewBox="0 0 50 50" fill="currentColor"><path d="M25 3C12.85 3 3 12.85 3 25s9.85 22 22 22 22-9.85 22-22S37.15 3 25 3zm-4.15 30.6H16.1V20.15h4.75V33.6zm-2.38-15.25a2.75 2.75 0 110-5.5 2.75 2.75 0 010 5.5zM36.4 33.6h-4.72v-6.65c0-1.76-.63-2.95-2.19-2.95-1.2 0-1.91.8-2.22 1.58-.11.28-.14.66-.14 1.05v7h-4.72s.06-11.35 0-12.53H27v1.78c.63-.97 1.75-2.35 4.26-2.35 3.11 0 5.44 2.03 5.44 6.4V33.6z"/></svg>
+    </a>
+
+    <div class="float-tooltip">Messenger</div>
+    <a href="https://m.me/aparthub" class="float-btn float-btn--messenger" target="_blank" aria-label="Messenger">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 4.975 0 11.111c0 3.497 1.745 6.616 4.472 8.652V24l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.975 12-11.111C24 4.975 18.627 0 12 0zm1.193 14.963l-3.056-3.259-5.963 3.259 6.559-6.963 3.13 3.259 5.889-3.259-6.559 6.963z"/></svg>
+    </a>
+
+    <div class="float-tooltip">Hotline</div>
+    <a href="tel:0901234567" class="float-btn float-btn--phone" aria-label="Hotline">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+    </a>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
